@@ -29,7 +29,27 @@ const userSlice = createSlice({
     },
   },
 });
-export const saveUser = createAction("saveUser");
+export const saveUserAsync = createAction(
+  "saveUserAsync",
+  function prepare(user) {
+    return {
+      payload: {
+        user,
+      },
+    };
+  }
+);
+export const saveUserSuccess = createAction(
+  "saveUserSuccess",
+  function prepare(user) {
+    return {
+      payload: {
+        user,
+      },
+    };
+  }
+);
+export const deletedUserAsync = createAction("deletedUserAsync");
 export const { getUsers, increment, getUserSuccess, setAuth, deletedUser } =
   userSlice.actions;
 export default userSlice.reducer;

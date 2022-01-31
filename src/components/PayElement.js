@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
-import {
-  useParams,
-  Navigate,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Button, Card, Col, FormControl, InputGroup } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { deletedUser } from "../redux/reducers/userSlice";
+import {
+  deletedUser,
+  saveUserAsync,
+  saveUserSuccess,
+} from "../redux/reducers/userSlice";
 
 function PayElement() {
   const { id } = useParams();
@@ -18,7 +17,6 @@ function PayElement() {
   const [deleted, setDeleted] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const location = useLocation();
 
   const handleClick = (e) => {
     if (e.detail === 2) {
@@ -33,19 +31,11 @@ function PayElement() {
   };
   const saveUserData = async () => {
     setEdit(!isEdit);
-    await axios
-      .put(`https://61f0031c732d93001778e7ca.mockapi.io/pay/users/${id}`, {
-        name: userName,
-        sum: userSum,
-      })
-      .then((res) => console.log(res));
+    dispatch(saveUserSuccess({ id, userName, userSum }));
   };
-  const deleteUser = async () => {
-    await axios
-      .delete(`https://61f0031c732d93001778e7ca.mockapi.io/pay/users/${id}`)
-      .then((res) => console.log(res));
-    await dispatch(deletedUser(id));
-    await setDeleted(!deleted);
+  const deleteUser = () => {
+    dispatch(deletedUser(id));
+    navigate("/pays", { replace: true });
   };
   useEffect(() => {
     axios
@@ -55,10 +45,6 @@ function PayElement() {
         setUserSum(res.data.sum);
       });
   }, [id]);
-  if (deleted) {
-    navigate("/pays", { replace: true });
-  }
-
   return (
     <div>
       <Col>
