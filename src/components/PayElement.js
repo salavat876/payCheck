@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Navigate, useLocation } from "react-router-dom";
 import axios from "axios";
-import {
-  Button,
-  Card,
-  Col,
-  FormControl,
-  InputGroup,
-} from "react-bootstrap";
+import { Button, Card, Col, FormControl, InputGroup } from "react-bootstrap";
 
 function PayElement() {
   const { id } = useParams();
@@ -39,9 +33,7 @@ function PayElement() {
   };
   const deleteUser = () => {
     axios
-      .delete(
-        `https://61f0031c732d93001778e7ca.mockapi.io/pay/users/${id}`
-      )
+      .delete(`https://61f0031c732d93001778e7ca.mockapi.io/pay/users/${id}`)
       .then((res) => console.log(res));
     setDeleted(!deleted);
   };
@@ -96,9 +88,7 @@ function PayElement() {
               </>
             ) : (
               <>
-                <Card.Title onClick={handleClick}>
-                  name: {userName}
-                </Card.Title>
+                <Card.Title onClick={handleClick}>name: {userName}</Card.Title>
                 <Card.Text onClick={handleClick}>Sum: {userSum}</Card.Text>
               </>
             )}

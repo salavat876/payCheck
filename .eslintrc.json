@@ -1,18 +1,15 @@
 {
   "env": {
     "browser": true,
-    "es2021": true
+    "es2021": true,
+    "node": true
   },
   "settings": {
     "react": {
       "version": "detect"
     }
   },
-  "extends": [
-    "plugin:react/recommended",
-    "eslint:recommended",
-    "prettier"
-  ],
+  "extends": ["plugin:react/recommended", "eslint:recommended", "prettier"],
   "parser": "@babel/eslint-parser",
   "parserOptions": {
     "ecmaFeatures": {

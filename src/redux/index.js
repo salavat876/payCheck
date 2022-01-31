@@ -9,6 +9,7 @@ const saga = createSagaMiddleware();
 const rootReducer = combineReducers({
   users: userSlice,
 });
+//TO-DO redux-persist
 export const store = configureStore({
   reducer: rootReducer,
   devTools: true,

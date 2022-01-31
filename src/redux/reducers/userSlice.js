@@ -5,10 +5,15 @@ const userSlice = createSlice({
   initialState: {
     users: [],
     isLoad: false,
-    isAuth: true,
+    isAuth: false,
     oneUser: null,
+    login: "paycheck@gmail.com",
+    password: "1234321",
   },
   reducers: {
+    setAuth: (state) => {
+      state.isAuth = true;
+    },
     getUserSuccess: (state) => {
       state.isLoad = true;
     },
@@ -19,14 +24,9 @@ const userSlice = createSlice({
     increment: (state) => {
       state.count += 1;
     },
-    findUser: (state, action) => {
-      state.oneUser = state.users.find(
-        (user) => user.id === action.payload
-      );
-    },
   },
 });
 export const saveUser = createAction("saveUser");
-export const { getUsers, increment, getUserSuccess, findUser } =
+export const { getUsers, increment, getUserSuccess, setAuth } =
   userSlice.actions;
 export default userSlice.reducer;
