@@ -9,6 +9,7 @@ function PayElement() {
   const { id } = useParams();
   const [userName, setUserName] = useState(null);
   const [userSum, setUserSum] = useState(null);
+  const [deleted, setDeleted] = useState(false);
   const [isEdit, setEdit] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ function PayElement() {
   };
   const deleteUser = () => {
     dispatch(deletedUser(id));
-    navigate("/pays", { replace: true });
+    setDeleted(!deleted);
   };
   useEffect(() => {
     axios
@@ -40,6 +41,9 @@ function PayElement() {
         setUserSum(res.data.sum);
       });
   }, [id]);
+  if (deleted) {
+    navigate("/pays", { state: { from: { pathname: location.pathname } } });
+  }
   return (
     <div>
       <Col>
