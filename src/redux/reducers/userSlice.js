@@ -21,12 +21,15 @@ const userSlice = createSlice({
       state.isLoad = false;
       state.users = action.payload;
     },
+    deletedUser: (state, action) => {
+      state.users.filter((user) => user.id !== user.id);
+    },
     increment: (state) => {
       state.count += 1;
     },
   },
 });
 export const saveUser = createAction("saveUser");
-export const { getUsers, increment, getUserSuccess, setAuth } =
+export const { getUsers, increment, getUserSuccess, setAuth, deletedUser } =
   userSlice.actions;
 export default userSlice.reducer;
