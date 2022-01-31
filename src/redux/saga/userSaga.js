@@ -1,10 +1,8 @@
 import { put, call, takeEvery } from "redux-saga/effects";
 import {
-  deletedUser,
   deletedUserAsync,
   getUsers,
   saveUserAsync,
-  saveUserSuccess,
 } from "../reducers/userSlice.js";
 import axios from "axios";
 

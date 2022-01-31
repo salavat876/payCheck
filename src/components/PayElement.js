@@ -3,18 +3,13 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Button, Card, Col, FormControl, InputGroup } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import {
-  deletedUser,
-  saveUserAsync,
-  saveUserSuccess,
-} from "../redux/reducers/userSlice";
+import { deletedUser, saveUserSuccess } from "../redux/reducers/userSlice";
 
 function PayElement() {
   const { id } = useParams();
   const [userName, setUserName] = useState(null);
   const [userSum, setUserSum] = useState(null);
   const [isEdit, setEdit] = useState(false);
-  const [deleted, setDeleted] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
