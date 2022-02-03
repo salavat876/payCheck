@@ -24,9 +24,6 @@ const userSlice = createSlice({
     deletedUser: (state, action) => {
       state.users.filter((user) => user.id !== user.id);
     },
-    increment: (state) => {
-      state.count += 1;
-    },
   },
 });
 export const saveUserAsync = createAction(
