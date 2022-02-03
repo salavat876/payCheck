@@ -42,7 +42,11 @@ function PayElement() {
       });
   }, [id]);
   if (deleted) {
-    navigate("/pays", { state: { from: { pathname: location.pathname } } });
+    setTimeout(
+      () =>
+        navigate("/pays", { state: { from: { pathname: location.pathname } } }),
+      1000
+    );
   }
   return (
     <div>
